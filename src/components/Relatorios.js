@@ -119,11 +119,28 @@ const Relatorios = () => {
   };
 
   return (
-    <div>
-      <div className="card-header">
+    <div className="main-content">
+      <div className="card-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <h1 className="card-title">Relatórios de Vendas</h1>
-        <button className="btn btn-success" onClick={exportReport}>
-          <Download size={18} />
+        <button 
+          onClick={exportReport}
+          style={{ 
+            background: '#1e293b',
+            color: 'white',
+            border: 'none',
+            padding: '0.75rem 1.5rem',
+            borderRadius: '12px',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            fontSize: '0.875rem',
+            fontWeight: '600',
+            transition: 'all 0.2s ease',
+            fontFamily: 'Inter, sans-serif'
+          }}
+        >
+          <Download size={20} />
           Exportar Relatório
         </button>
       </div>
@@ -155,10 +172,21 @@ const Relatorios = () => {
           <div>
             {(startDate || endDate) && (
               <button 
-                className="btn btn-secondary"
                 onClick={() => {
                   setStartDate('');
                   setEndDate('');
+                }}
+                style={{
+                  background: '#f8fafc',
+                  color: '#64748b',
+                  border: '1px solid #e2e8f0',
+                  padding: '0.5rem 1rem',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  fontWeight: '500',
+                  fontSize: '0.875rem',
+                  transition: 'all 0.2s ease',
+                  fontFamily: 'Inter, sans-serif'
                 }}
               >
                 Limpar Filtros

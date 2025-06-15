@@ -1,6 +1,6 @@
 import React from 'react';
 import { useProducts } from '../context/ProductContext';
-import { Package, DollarSign, ShoppingCart, AlertTriangle } from 'lucide-react';
+import { Package, DollarSign, ShoppingCart } from 'lucide-react';
 
 const Dashboard = () => {
   const {
@@ -9,15 +9,16 @@ const Dashboard = () => {
     getTotalProducts,
     getTotalRevenue,
     getTotalSales,
-    getLowStockProducts,
     getTopSellingProducts
   } = useProducts();
 
-  const lowStockProducts = getLowStockProducts();
-  const topProducts = getTopSellingProducts(3);
+  const topProducts = getTopSellingProducts(5);
   const totalRevenue = getTotalRevenue();
   const totalProducts = getTotalProducts();
   const totalSales = getTotalSales();
+  
+  // Calcular categorias ativas
+  const activeCategories = [...new Set(products.map(product => product.category))].length;
 
   // Vendas dos últimos 7 dias
   const last7Days = new Date();
@@ -52,9 +53,9 @@ const Dashboard = () => {
         </div>
 
         <div className="stat-card">
-          <AlertTriangle size={32} />
-          <div className="stat-number">{lowStockProducts.length}</div>
-          <div className="stat-label">Produtos em Falta</div>
+          <Package size={32} />
+          <div className="stat-number">{activeCategories}</div>
+          <div className="stat-label">Categorias Ativas</div>
         </div>
       </div>
 
@@ -62,27 +63,27 @@ const Dashboard = () => {
         {/* Produtos Mais Vendidos */}
         <div className="card">
           <div className="card-header">
-            <h2 className="card-title">Top Produtos Mais Vendidos</h2>
+            <h2 className="card-title">Top 5 Produtos Mais Vendidos</h2>
           </div>
-          <div>
+          <div className="top-products">
             {topProducts.length > 0 ? (
               topProducts.map((product, index) => (
-                <div key={product.productId} style={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between', 
-                  alignItems: 'center',
-                  padding: '0.75rem 0',
-                  borderBottom: index < topProducts.length - 1 ? '1px solid #eee' : 'none'
-                }}>
-                  <div>
-                    <div style={{ fontWeight: '500' }}>{product.productName}</div>
-                    <div style={{ fontSize: '0.9rem', color: '#6c757d' }}>
-                      {product.quantity} unidades vendidas
+                <div key={product.productId} className={`product-rank rank-${index + 1}`}>
+                  <div className="rank-info">
+                    <div className="rank-number">
+                      {index + 1}
+                    </div>
+                    <div className="product-details">
+                      <h4>{product.productName}</h4>
+                      <p>{product.quantity} unidades vendidas</p>
                     </div>
                   </div>
-                  <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontWeight: '600', color: '#28a745' }}>
+                  <div className="revenue-info">
+                    <div className="revenue-amount">
                       R$ {product.revenue.toFixed(2)}
+                    </div>
+                    <div className="revenue-label">
+                      Faturamento
                     </div>
                   </div>
                 </div>
@@ -95,42 +96,48 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Produtos com Estoque Baixo */}
+        {/* Controle de Produtos por Categoria */}
         <div className="card">
           <div className="card-header">
-            <h2 className="card-title">Produtos com Estoque Baixo</h2>
+            <h2 className="card-title">Produtos por Categoria</h2>
           </div>
-          <div>
-            {lowStockProducts.length > 0 ? (
-              lowStockProducts.map((product, index) => (
-                <div key={product.id} style={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between', 
-                  alignItems: 'center',
-                  padding: '0.75rem 0',
-                  borderBottom: index < lowStockProducts.length - 1 ? '1px solid #eee' : 'none'
-                }}>
-                  <div>
-                    <div style={{ fontWeight: '500' }}>{product.name}</div>
-                    <div style={{ fontSize: '0.9rem', color: '#6c757d' }}>
-                      {product.category}
-                    </div>
+          <div className="products-by-category">
+            {(() => {
+              const productsByCategory = {};
+              products.forEach(product => {
+                if (!productsByCategory[product.category]) {
+                  productsByCategory[product.category] = [];
+                }
+                productsByCategory[product.category].push(product);
+              });
+
+              return Object.keys(productsByCategory).length > 0 ? (
+                Object.entries(productsByCategory).map(([category, categoryProducts]) => (
+                  <div key={category} className="category-section">
+                    <h4 className="category-title">
+                      {category} ({categoryProducts.length} produtos)
+                    </h4>
+                    {categoryProducts.map((product) => (
+                      <div key={product.id} className="product-item">
+                        <div className="product-info">
+                          <h4>{product.name}</h4>
+                          <p>R$ {product.price.toFixed(2)}</p>
+                        </div>
+                        <div className="product-quantity" style={{ 
+                          color: product.quantity <= 5 ? '#dc3545' : '#28a745'
+                        }}>
+                          {product.quantity} unidades
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                  <div style={{ textAlign: 'right' }}>
-                    <div style={{ 
-                      fontWeight: '600', 
-                      color: product.quantity <= 5 ? '#dc3545' : '#ffc107'
-                    }}>
-                      {product.quantity} unidades
-                    </div>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <p style={{ textAlign: 'center', color: '#6c757d', padding: '2rem' }}>
-                Todos os produtos têm estoque adequado
-              </p>
-            )}
+                ))
+              ) : (
+                <p style={{ textAlign: 'center', color: '#6c757d', padding: '2rem' }}>
+                  Nenhum produto cadastrado ainda
+                </p>
+              );
+            })()}
           </div>
         </div>
       </div>
