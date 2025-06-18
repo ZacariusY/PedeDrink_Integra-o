@@ -1,174 +1,163 @@
-# PEDEDRINK - Sistema de Gerenciamento de Distribuidora
+# 🍺 PedeDrink - Sistema de Gestão de Distribuidora
 
-Sistema administrativo completo para gerenciamento de distribuidora de bebidas, desenvolvido em React com JavaScript.
+Sistema completo para gestão de distribuidora de bebidas com frontend React e backend Node.js + API REST.
+
+## 🚀 Características
+
+- **Frontend React** - Interface moderna e responsiva
+- **Backend Node.js** - API REST completa
+- **Autenticação JWT** - Sistema seguro de login
+- **Gestão de Produtos** - CRUD completo de bebidas
+- **Controle de Vendas** - Registro e acompanhamento
+- **Relatórios** - Dashboard com métricas
+- **Integração Postman** - Collection completa para testes
 
 ## 📋 Funcionalidades
 
-### 🏠 Dashboard
-- Visão geral das estatísticas da distribuidora
-- Produtos cadastrados, vendas realizadas e faturamento total
-- Produtos com estoque baixo
-- Top produtos mais vendidos
-- Vendas dos últimos 7 dias
+### Frontend (React)
+- ✅ Dashboard com métricas
+- ✅ Gestão de produtos
+- ✅ Controle de vendas
+- ✅ Relatórios visuais
+- ✅ Sistema de autenticação
+- ✅ Interface responsiva
 
-### 📦 Gerenciamento de Produtos
-- **Adicionar produtos** com foto, preço, quantidade e categoria
-- **Editar produtos** existentes
-- **Excluir produtos** do catálogo
-- Controle de estoque em tempo real
-- Status visual de produtos em estoque/fora de estoque
-- Categorias: Cerveja, Refrigerante, Água, Suco, Energético, Vinho, Whisky, Vodka, Outros
+### Backend (Node.js)
+- ✅ API REST completa
+- ✅ Autenticação JWT
+- ✅ Middleware de segurança
+- ✅ Rate limiting
+- ✅ Validação de dados
+- ✅ CORS configurado
 
-### 💰 Fluxo de Vendas
-- **Registrar novas vendas** com controle de estoque automático
-- Seleção de produtos com preço e estoque disponível
-- Cálculo automático do total da venda
-- Filtros por data
-- Estatísticas de vendas em tempo real
-- Histórico completo de todas as vendas
+## 🛠️ Tecnologias
 
-### 📊 Relatórios de Vendas
-- **Gráficos interativos** com Recharts:
-  - Vendas por data (linha)
-  - Vendas por categoria (pizza)
-  - Top 10 produtos mais vendidos (barras)
-- **Filtros por período** personalizado
-- **Estatísticas detalhadas**:
-  - Total de vendas
-  - Receita total
-  - Ticket médio
-  - Clientes únicos
-- **Exportação de relatórios** em JSON
-- Tabela detalhada por categoria com percentuais
+### Frontend
+- React 18
+- React Router DOM
+- Lucide React (ícones)
+- CSS3
 
-## 🚀 Tecnologias Utilizadas
+### Backend
+- Node.js
+- Express.js
+- JSON Web Token (JWT)
+- bcryptjs
+- express-validator
+- helmet (segurança)
+- cors
 
-- **React** 18 - Framework principal
-- **React Router DOM** - Roteamento
-- **Recharts** - Gráficos e visualizações
-- **Lucide React** - Ícones modernos
-- **CSS3** - Estilização moderna com gradientes
-- **LocalStorage** - Persistência de dados
+## 📦 Instalação
 
-## 🎨 Design
-
-- Interface moderna e responsiva
-- Gradientes e cores vibrantes
-- Cards com sombras suaves
-- Hover effects nos botões
-- Layout mobile-first
-- Paleta de cores harmoniosa
-
-## 📱 Responsividade
-
-- ✅ Desktop (1200px+)
-- ✅ Tablet (768px - 1199px)
-- ✅ Mobile (até 767px)
-
-## 🔧 Como Executar
-
-1. **Clone o repositório**
-   ```bash
-   git clone <url-do-repositorio>
-   cd pededrink
-   ```
-
-2. **Instale as dependências**
-   ```bash
-   npm install
-   ```
-
-3. **Execute o projeto**
-   ```bash
-   npm start
-   ```
-
-4. **Acesse no navegador**
-   ```
-   http://localhost:3000
-   ```
-
-## 📚 Estrutura do Projeto
-
-```
-pededrink/
-├── src/
-│   ├── components/
-│   │   ├── Dashboard.js       # Tela principal com estatísticas
-│   │   ├── Navbar.js          # Menu de navegação
-│   │   ├── Produtos.js        # CRUD de produtos
-│   │   ├── Vendas.js          # Registro e fluxo de vendas
-│   │   └── Relatorios.js      # Relatórios e gráficos
-│   ├── context/
-│   │   └── ProductContext.js  # Gerenciamento global de estado
-│   ├── App.js                 # Componente principal
-│   ├── App.css                # Estilos globais
-│   └── index.js               # Ponto de entrada
-├── public/
-├── package.json
-└── README.md
+### 1. Clone o repositório
+```bash
+git clone https://github.com/ZacariusY/PedeDrink_Integra-o.git
+cd PedeDrink_Integra-o
 ```
 
-## 💾 Persistência de Dados
+### 2. Instale as dependências do Frontend
+```bash
+npm install
+```
 
-Os dados são salvos automaticamente no **LocalStorage** do navegador, incluindo:
-- Lista de produtos
-- Histórico de vendas
-- Configurações do sistema
+### 3. Instale as dependências do Backend
+```bash
+cd backend
+npm install
+```
 
-## 🎯 Recursos Avançados
+## 🚀 Como usar
 
-### Controle de Estoque
-- Redução automática do estoque ao registrar vendas
-- Alertas visuais para produtos com estoque baixo (≤10 unidades)
-- Validação de quantidade disponível antes da venda
+### 1. Inicie o Backend
+```bash
+cd backend
+node server.js
+```
+O servidor estará rodando em: `http://localhost:3001`
 
-### Análise de Dados
-- Cálculo de produtos mais vendidos
-- Análise por categoria
-- Métricas de performance
-- Tendências de vendas
+### 2. Inicie o Frontend
+```bash
+npm start
+```
+A aplicação estará disponível em: `http://localhost:3000`
 
-### Interface Intuitiva
-- Modais para formulários
-- Confirmações de ação
-- Feedback visual imediato
-- Navegação fluida
+## 🔧 API Endpoints
 
-## 🔒 Validações
+### Autenticação
+- `POST /api/auth/register` - Criar usuário
+- `POST /api/auth/login` - Fazer login
+- `GET /api/auth/verify` - Verificar token
+- `GET /api/auth/profile` - Perfil do usuário
 
-- Campos obrigatórios nos formulários
-- Validação de estoque antes da venda
-- Controle de tipos de dados (números, datas, URLs)
-- Prevenção de vendas com estoque insuficiente
+### Produtos
+- `GET /api/products` - Listar produtos
+- `POST /api/products` - Criar produto
+- `PUT /api/products/:id` - Atualizar produto
+- `DELETE /api/products/:id` - Deletar produto
+- `GET /api/products/low-stock` - Produtos com estoque baixo
 
-## 🎨 Paleta de Cores
+### Vendas
+- `GET /api/sales` - Listar vendas
+- `POST /api/sales` - Registrar venda
 
-- **Primária**: #667eea → #764ba2 (Gradiente azul-roxo)
-- **Sucesso**: #48c6ef → #6f86d6 (Gradiente azul claro)
-- **Perigo**: #ff6b6b → #ee5a52 (Gradiente vermelho)
-- **Aviso**: #feca57 → #ff9ff3 (Gradiente amarelo-rosa)
-- **Secundária**: #6c757d → #5a6268 (Gradiente cinza)
+### Relatórios
+- `GET /api/reports/dashboard` - Dados do dashboard
 
-## 🚀 Melhorias Futuras
+## 📫 Testando com Postman
 
-- [ ] Backend com banco de dados
-- [ ] Autenticação de usuários
-- [ ] Relatórios em PDF
-- [ ] Notificações push
-- [ ] Integração com sistemas fiscais
-- [ ] App mobile
-- [ ] Dashboard em tempo real
-- [ ] Backup automático
+1. Importe a collection: `backend/PedeDrink-Postman-Collection.json`
+2. Configure o ambiente com:
+   - `baseUrl`: `http://localhost:3001`
+   - `token`: (será preenchido após login)
 
-## 👨‍💻 Desenvolvimento
+### Usuário padrão para testes:
+- **Email:** `admin@pededrink.com`
+- **Senha:** `password`
 
-Projeto desenvolvido como sistema administrativo completo para distribuidoras de bebidas, focando em usabilidade, performance e design moderno.
+## 🔐 Segurança
 
-## 📄 Licença
+- Autenticação JWT
+- Senhas com hash bcrypt
+- Rate limiting (100 req/15min)
+- Headers de segurança (Helmet)
+- Validação de entrada
+- CORS configurado
 
-Este projeto é de uso livre para fins educacionais e comerciais.
+## 📁 Estrutura do Projeto
+
+```
+PedeDrink/
+├── src/                     # Frontend React
+│   ├── components/          # Componentes React
+│   ├── pages/              # Páginas da aplicação
+│   └── App.js              # Componente principal
+├── backend/                 # Backend Node.js
+│   ├── routes/             # Rotas da API
+│   ├── models/             # Modelos de dados
+│   ├── middleware/         # Middlewares
+│   └── server.js           # Servidor principal
+└── public/                 # Arquivos estáticos
+```
+
+## 👥 Contribuição
+
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 🤝 Suporte
+
+Se você encontrar algum problema ou tiver dúvidas:
+
+1. Abra uma [issue](https://github.com/ZacariusY/PedeDrink_Integra-o/issues)
+2. Ou entre em contato
 
 ---
 
-**PEDEDRINK** - Gerencie sua distribuidora com eficiência e estilo!
+⭐ Se este projeto te ajudou, considere dar uma estrela!
